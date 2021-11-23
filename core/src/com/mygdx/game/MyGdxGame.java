@@ -1,31 +1,41 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class MyGdxGame extends ApplicationAdapter {
+import java.util.Random;
+
+public class MyGdxGame extends Game {
+
+	//GameScreen gameScreen;
+	public static Random rand = new Random();
 	SpriteBatch batch;
-	Texture img;
-	
+	ShapeRenderer shapeRenderer;
+	BitmapFont font;
+
 	@Override
-	public void create () {
+	public void create() {
+		//gameScreen = new GameScreen();
+		//setScreen(gameScreen);
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		shapeRenderer = new ShapeRenderer();
+		font = new BitmapFont();
+		setScreen(new titleScreen(this));
 	}
 
 	@Override
-	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+	public void render() {
+		super.render();
 	}
-	
+
 	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
+	public void dispose() {
+		super.dispose();
 	}
 }
